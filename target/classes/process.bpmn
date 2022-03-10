@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0w1qqc4" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="test_1" name="test" isExecutable="true">
+    <bpmn:sequenceFlow id="Flow_0vwygb0" sourceRef="StartEvent_1" targetRef="sendmail" />
+    <bpmn:endEvent id="EndEvent_1">
+      <bpmn:incoming>Flow_1o0p8hz</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_19elx9m" sourceRef="sendmail" targetRef="Activity_0o8ps7w" />
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0vwygb0</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_08he5b8" messageRef="Message_0ms2pue" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1o0p8hz" sourceRef="Activity_0o8ps7w" targetRef="EndEvent_1" />
+    <bpmn:sendTask id="sendmail" name="mail" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:class="com.mail.Send">
+      <bpmn:incoming>Flow_0vwygb0</bpmn:incoming>
+      <bpmn:outgoing>Flow_19elx9m</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:userTask id="Activity_0o8ps7w" name="test">
+      <bpmn:incoming>Flow_19elx9m</bpmn:incoming>
+      <bpmn:outgoing>Flow_1o0p8hz</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmn:message id="Message_0ms2pue" name="MessageKafkaDemo" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="test_1">
+      <bpmndi:BPMNEdge id="Flow_1o0p8hz_di" bpmnElement="Flow_1o0p8hz">
+        <di:waypoint x="590" y="117" />
+        <di:waypoint x="692" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19elx9m_di" bpmnElement="Flow_19elx9m">
+        <di:waypoint x="390" y="117" />
+        <di:waypoint x="490" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vwygb0_di" bpmnElement="Flow_0vwygb0">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="290" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1lr3et9_di" bpmnElement="EndEvent_1">
+        <dc:Bounds x="692" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ltvqq7_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xrlvhw_di" bpmnElement="sendmail">
+        <dc:Bounds x="290" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0gw5q0b_di" bpmnElement="Activity_0o8ps7w">
+        <dc:Bounds x="490" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
