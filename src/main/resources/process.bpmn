@@ -11,7 +11,7 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_08he5b8" messageRef="Message_0ms2pue" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1o0p8hz" sourceRef="Activity_0o8ps7w" targetRef="EndEvent_1" />
-    <bpmn:sendTask id="sendmail" name="mail" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:class="com.mail.Send">
+    <bpmn:sendTask id="sendmail" name="mail" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:class="com.producer.Send">
       <bpmn:incoming>Flow_0vwygb0</bpmn:incoming>
       <bpmn:outgoing>Flow_19elx9m</bpmn:outgoing>
     </bpmn:sendTask>
